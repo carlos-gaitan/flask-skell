@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ zone }}</h1>
+    <p>Testing Jinga</p>
+
+    <h3> IF ELSEIF ENDIF</h3>
+    {# Conditionals #}
+    {% if zone == 'NoNe' %}
+        <P> There was no zone defined </P>
+    {% else %}
+        <P> There was a zone defined: {{zone }} </P>
+    {% endif %}
+
+    <h3> For</h3>
+    {# Statement for #}
+    <ul>
+    {% for item in items %}
+        <li>{{ item }}-{{ loop.length }}</li>
+    {% endfor %}
+    </ul>
+
+    
+
+    <h3> Filters</h3>
+    {# Filter default #}
+    <p> {{ task | default('The isn`t any task defined') }} </p>
+
+    {#
+    {% if task != NULL %}
+        <P> We have task! </P>
+    {% endif %}
+    #}
+
+
+    {# Filter escape #}
+    <p> {{ '<h1> Hola Munndo!</h1>' }}</p>
+
+    {# Filter conversion #}
+    <p>{{ 5.1425 | int }}</p>
+    <p>{{ 5 | float }}</p>
+
+    {# Filter max min #}
+    <p>{{ [1,2,3,4,5,6] | min }}</p>
+    <p>{{ [1,2,3,4,5,6] | max }}</p>
+
+    {# Filter max min #}
+    <p>{{ 5.141 | round }}</p>
+    <p>{{ 5.5 | round }}</p>
+    <p>{{ 6.5199 | round(2) }}</p>
+
+    {# Filter replace #}
+    <p>{{ "Hello my friend" | replace("Hello", "Hi") }}</p>
+
+    {# Filter join #}
+    <p>{{ ["Hello","my","friend"] | join("-") }}</p>
+
+    {# Filter lower upper #}
+    <p>{{ ["Hello","my","friend"] | join("-") | upper }}</p>
+
+    {% filter lower %}
+    HeLLo FLasK    
+    {% endfilter %}
+
+    {# Filter reverse #}
+    <p>{{ [1,2,3,4,5,6] | reverse }}</p>
+    <p>{{ "Hola my friend" | reverse }}</p>
+
+    <ul>
+    {% for x in [1,2,3,4,5,6] | reverse %}
+        <li>{{ x }}</li>
+    {% endfor %}
+    </ul>
+
+    {# Filter length #}
+    <p>{{ [1,2,3,4,5,6] | length }}</p>
+    <p>{{ "Hola my friend" | length }}</p>
+
+    {# Filter sort #}
+    <p>{{ [1.5,23,0.3,14,35,0.6] | sort }}</p>
+
+    {# Filter slice #}
+    <p>{{ [1,2,3,4,5,6] | slice(3) }}</p>
+
+    <ul>
+        {% for x in [1,2,3,4,5,6] | slice(3) %}
+            <li>{{ x }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3> Variables</h3>
+
+    {% set var1 = 'Flask' %}
+    {% set var2 = 'Hello ' + var1 %}
+
+    {{ var2 }}
+
+    <h3> Bloque raw</h3>
+    {% raw %}
+
+    {% endraw %}
+
+    <h3> Bloque macro</h3>
+    {% macro suma(v1,v2) %}
+    <p>{{ v1 }} + {{ v2 }} = {{ v1 + v2 }}</p>
+    {% endmacro %}
+
+    {{ suma(4, 3) }}
+
+
+
+    
+
+
+
+
+
+</body>
+</html>
